@@ -13,7 +13,7 @@
 ; 1: if n is 1 no need to continue
 ; 2: if n is an even number add n/2 to the list
 ; The primitive cons takes two arguments. The second argument to cons should be a list, but doesn't always have to be. The result is a list.
-; In the Little schemer the second commandment is: Use cons to build lists
+; In the Little schemer the second commandment is: Use cons to build lists!
 ; 3: recursive call function with n as arguement
 ; 4: otherwise if the number is odd add n*3 + 1 to the list
 
