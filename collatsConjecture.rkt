@@ -34,9 +34,9 @@
   (cond
     ((= n 1) ls '(1)); 1
     ((even? n) ; 2
-      (cons n (collatz-list (/ n 2)))); 3
+      (cons n (collatz-listv2 (/ n 2)))); 3
     ((odd? n) ; 4
-      (cons n (collatz-list (+ (* 3 n) 1)))))); 3
+      (cons n (collatz-listv2 (+ (* 3 n) 1)))))); 3
 
 
 
