@@ -6,15 +6,15 @@
 
 ; LEFT CYCLE - define a function lcycle which takes a list as an argument
 ;  get the first element of the list and put it to the back of
-;  the list, flatten the nested lists into one new list. 
+;  the list, merge the nested lists into one new list. 
 (define (lcycle (list null))
-  (flatten (cons (cdr list) (cons (car list) '()))))
+  (merge (cons (cdr list) (cons (car list) '()))))
 
 ; RIGHT CYCLE - define a function rcycle which takes a list as an argument
 ; get the last element, the first element and the rest of the elements,
-; pop the last off and flatten into one list
+; pop the last off and merge into one list
 (define (rcycle (list null))
- (pop (flatten (cons (peek list) (cons (car list) (cons (cdr list) '()))))))
+ (pop (merge (cons (peek list) (cons (car list) (cons (cdr list) '()))))))
 
 ; the peek function will return the last element of the list
 (define (peek n)
@@ -28,7 +28,17 @@
 (define (pop n)
   (if(null? (cdr n))
      '() 
-      (cons (car n) (pop (cdr n))))) 
+      (cons (car n) (pop (cdr n)))))
+
+; the Merge function will take the elements of nested lists and return the list as one
+; https://stackoverflow.com/questions/28753729/how-to-manually-flatten-a-list-in-racket-scheme
+(define (merge n)
+  (cond
+    ((null? n) '())
+        ((pair? n)
+         (cons (merge (car n)) (merge (cdr n))))
+        ((list n)))
+  )
 
 (lcycle (list 1 2 3 4 5))
 (rcycle (list 1 2 3 4 5))
