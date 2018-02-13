@@ -36,7 +36,7 @@
   (cond
     ((null? n) '())
         ((pair? n)
-         (cons (merge (car n)) (merge (cdr n))))
+         (append (merge (car n)) (merge (cdr n))))
         ((list n)))
   )
 
