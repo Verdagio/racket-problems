@@ -33,11 +33,11 @@
 ; the Merge function will take the elements of nested lists and return the list as one
 ; https://stackoverflow.com/questions/28753729/how-to-manually-flatten-a-list-in-racket-scheme
 (define (merge n)
-  (cond
-    ((null? n) '())
-        ((pair? n)
-         (append (merge (car n)) (merge (cdr n))))
-        ((list n)))
+  ( if (null? n)
+       '()
+        (if (pair? n)
+         (append (merge (car n)) (merge (cdr n)))
+        (list n)))
   )
 
 (lcycle (list 1 2 3 4 5))
