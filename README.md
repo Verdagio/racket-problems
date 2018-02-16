@@ -22,16 +22,17 @@ You can find the full information [here](https://docs.racket-lang.org/getting-st
   ### 1. Prime numbers
 ###### First of all, what is a prime number?
 
-A prime number is a number which is divisible only by itself and one.
+A prime number is a natural positive number which greater than one, and is divisible only by itself and one.
 
 ###### How do we prove that a number is a prime number? 
 
-Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only 1 and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets.
+Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only one and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets.
 
 ###### So how could we lower the cost? 
 
-To lower the complexity and cost of the algorithm we could just check the numbers less than the square root of (x) this will lower complexity quite a lot.
+To lower the complexity and cost of the algorithm we could just check the numbers less than the square root of (x) this will still return the same result at a fraction of the cost. Numbers which are not prime will be divisible by the following numbers less than 10: [2, 3, 5, 7] which are prime numbers themselves.
 
+[Here](https://en.wikipedia.org/wiki/Prime_number) is some information from Wikipedia if you want to know more about prime numbers...
 
 
 
