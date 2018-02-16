@@ -8,7 +8,7 @@
 ;  get the first element of the list and put it to the back of
 ;  the list, merge the nested lists into one new list. 
 (define (lcycle (list null))
-  (merge (cons (cdr list) (cons (car list) '()))))
+   (merge  (cons (cdr list) (cons (car list) null))))
 
 ; RIGHT CYCLE - define a function rcycle which takes a list as an argument
 ; get the last element, the first element and the rest of the elements,
@@ -34,8 +34,8 @@
 ; https://stackoverflow.com/questions/28753729/how-to-manually-flatten-a-list-in-racket-scheme
 (define (merge n)
   ( if (null? n)
-       '()
-        (if (pair? n)
+       null
+       (if (pair? n)
          (append (merge (car n)) (merge (cdr n)))
         (list n)))
   )
