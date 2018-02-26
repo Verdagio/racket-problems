@@ -26,11 +26,11 @@ A prime number is a natural positive number which greater than one, and is divis
 
 ###### How do we prove that a number is a prime number? 
 
-Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only one and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets.
+Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only one and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets. Numbers which are not prime will be divisible by the following numbers prime numbers: [2, 3, 5, 7].
 
 ###### So how could we lower the cost? 
 
-To lower the complexity and cost of the algorithm we could just check the numbers less than the square root of (x) this will still return the same result at a fraction of the cost. Numbers which are not prime will be divisible by the following numbers less than 10: [2, 3, 5, 7] which are prime numbers themselves.
+To lower the complexity and cost of the algorithm we could just check the numbers less than the square root of (x) this will still return the same result at a fraction of the cost. Why is this less expensive? We're checking only a fraction of numbers which the brute force algorithm will check.
 
 [Here](https://en.wikipedia.org/wiki/Prime_number) is some information from Wikipedia if you want to know more about prime numbers...
 
