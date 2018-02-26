@@ -20,13 +20,14 @@ You can find the full information [here](https://docs.racket-lang.org/getting-st
  Listed below are a few relatively simple problems that need to be worked out in scheme.
 
   ### 1. Prime numbers
+ 
 ###### First of all, what is a prime number?
 
 A prime number is a natural positive number which greater than one, and is divisible only by itself and one.
 
 ###### How do we prove that a number is a prime number? 
 
-Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only one and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets. Numbers which are not prime will be divisible by the following numbers prime numbers: [2, 3, 5, 7].
+Well its relatively simple, we could use a brute force algorithm to check if the number (x) is divisible by the iteration (y). If it is divisible by only one and itself then its prime.. otherwise its not. While the brute force algorithm will eventually return the result we're looking for it has the potential to be expensive in time and complexity the higher the (x) value gets. Numbers which are not prime will be divisible by the following prime numbers: [2, 3, 5, 7].
 
 ###### So how could we lower the cost? 
 
@@ -34,5 +35,9 @@ To lower the complexity and cost of the algorithm we could just check the number
 
 [Here](https://en.wikipedia.org/wiki/Prime_number) is some information from Wikipedia if you want to know more about prime numbers...
 
+ ### 2. Collatz Conjecture
+Write, from scratch, a function in Racket that takes a positive integer n0 as input and returns a list by recursively applying the following operation, starting with the input number: (Equal: n/2 | Odd: n * 3 + 1) until n is 1.
 
-
+###### What is Collatz Conjecture
+Collazt Conjecture is a mathematical conjecture concerning a sequence that begins with a positive natural number which will always end at 1 following the algorithm above
+ 
