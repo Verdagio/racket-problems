@@ -11,14 +11,11 @@
 ; the list will sum to 0
 ; otherwise return a null list
 
-
-(define (sublsum li)
-  (cond
-    (< 0 (getMin li)(combinations li))
-    (> 0 (getMin li) '())))
-
-
-
+(define (sublsum l)
+  (if
+    (null? l)
+    0
+    (+ (car l) (sublsum (cdr l)))))
  
 ; reference: https://stackoverflow.com/questions/47665879/finding-minimum-value-more-efficiently-in-racket
 (define (getMin lst)
@@ -36,3 +33,5 @@
   (+ (car l) (sum (cdr l)))))
 
 (sublsum (list 1 2 3 4 5))
+
+
