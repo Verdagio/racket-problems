@@ -11,27 +11,9 @@
 ; the list will sum to 0
 ; otherwise return a null list
 
-(define (sublsum l)
-  (if
-    (null? l)
-    0
-    (+ (car l) (sublsum (cdr l)))))
- 
-; reference: https://stackoverflow.com/questions/47665879/finding-minimum-value-more-efficiently-in-racket
-(define (getMin lst)
-    (cond
-      ((null? (cdr lst)) (car lst))
-      ((< (car lst) (getMin (cdr lst))) (car lst))
-      (else 
-        (getMin (cdr lst)))))
+(define (sublsum? lst);define our function
+  (null? lst) ; first ask if the list is empty
+  (zero? (apply + lst))); apply to do a procedure and check result is zero
 
-(define (inverse n)
-  (* -1 n))
-
-(define (sum l)
-  (cond (null? (cdr l))
-  (+ (car l) (sum (cdr l)))))
-
-(sublsum (list 1 2 3 4 5))
-
-
+(filter sublsum? (cdr (combinations (list 1 2 3 4 -5))))
+(filter sublsum? (cdr (combinations (list 1 2 3 4 5)))) ;test that second list gives no sublsum

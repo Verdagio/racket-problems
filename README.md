@@ -63,7 +63,13 @@ To solve the problem we need to make a couple of auxiliary functions which will 
 The ``peek`` function should mimic that of a ``List`` function that you may have used in Java. So lets look at that:
 > "The java.util.LinkedList.peek() method retrieves, but does not remove, the head (first element) of this list."
 
-Ok we already have ``car`` which will do this for us, so we'll create one for the final element. 
+Ok we already have ``car`` which will do this for us, so we'll create one for the final element. We recursively check until we reach the end of the list once we do return the value.
+
+ ##### Pop
+ Similar to ``peek`` the ``pop`` function, but instead of returning the the final element it will return every other element of the list.
+
+ ##### Append 
+Since the requirements specify that we cannot use the built in ``append`` function, we'll made our own using cons.
 
 
 
