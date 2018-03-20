@@ -9,7 +9,7 @@
 (define n 0)
 
 (define (hamming-weight l)
-  (if (not (pair? l))
+  (if (null? l)
       n
       (if (= 1 (car l))(+ 1 (hamming-weight (cdr l)))
       (hamming-weight (cdr l)))))

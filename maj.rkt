@@ -10,11 +10,17 @@
       (cond ; check the following conditions if car of x = y or z and vice versa
         ((= (car x) (car y)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
         ((= (car x) (car z)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
-        ((= (car z) (car y)) (cons (car y) (maj (cdr x) (cdr y) (cdr z))))
+        (else (cons (car y) (maj (cdr x) (cdr y) (cdr z))))
         )))
 ; if so append add the number to the list and recursively check through each element
 ; of the list until the exit statement is satisfied
 
+(define (maj-map x y z)
+    (map (lambda (a b c) ; map a lambda function with args a b c
+         (if(>= (+ a b c) 2) 1 0)); if the sum of a, b, & c is >= 2 return 1 : else 0
+         x y z)) ; map x -> a, y -> b, and z -> c
+
 
 ; expected value (0 0 0 1 0 1 1 1)
 (maj (list 0 0 0 0 1 1 1 1) (list 0 0 1 1 0 0 1 1) (list 0 1 0 1 0 1 0 1))
+(maj-map (list 0 0 0 0 1 1 1 1) (list 0 0 1 1 0 0 1 1) (list 0 1 0 1 0 1 0 1))
