@@ -5,8 +5,8 @@
 ; lists contain 1's and 0 otherwise.
 
 (define (maj x y z)
-  (if (null? x); exit statement if x is null we've reached the end
-      '() ; return the new list
+  (if (null? x); exit statement if x is null we've reached the endof the list
+      '() ; return the list of matching values
       (cond ; check the following conditions if car of x = y or z and vice versa
         ((= (car x) (car y)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
         ((= (car x) (car z)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
