@@ -15,6 +15,8 @@ You can find the full information [here](https://docs.racket-lang.org/getting-st
  2. On Mac OS, double click on the DrRacket icon. It is probably in a Racket folder that you dragged into your Applications folder.
  3. On Unix (including Linux), the drracket executable can be run directly from the command-line if it is in your path, which is probably the case if you chose a Unix-style distribution when installing.
 
+ You can also add Racket to the path or as an environmental variable if you want to run it from the terminal / command line, adding the path/to/the/racket/executable to the path environment variable.
+
  ## The Problems!
 
  Listed below are a few relatively simple problems that need to be solved in scheme using only the following:
@@ -199,7 +201,7 @@ Here is the solution for this problem:
 Named after Richard Hamming although he was not the originator of the Hamming Weight. The Hamming weight of binary numbers was originated in 1899 by James W. L. Glaisher to give a formula for the number of odd binomial coefficients in a single row of Pascal's triangle. The formula has uses in several areas including, cryptography, information and coding theory. 
 
 #### Conclusion
-This is the solution I founnd for this problem:
+This is the solution I built for this problem:
 ````scheme
   (define (hamming-weight l)
     (if (null? l)
@@ -220,4 +222,24 @@ For this I will explain the two different methods I used to solve this problem.
 
   1. First check if the current element is null if so exit the funciton, then check the following conditions if the the current element of x = y or z then add that to the list and recurse, otherwise add the current element of y and recurse.
 
-   2. Alternatively we can map x y z to a lambda function which checks the sum of each trio of elements to see if it equals 2 or more, if so add it to the list and return.
+   2. Alternatively we can map x y z to a lambda function with args a b c which checks the sum of each trio in the lists of elements to see if it equals 2 or more, if so add it to the list and return.
+
+#### Conclusion
+This are the solutions I came up with for the problem: 
+
+````scheme
+  (define (maj x y z)
+    (if (null? x)
+        0
+        (cond
+          ((= (car x) (car y)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
+          ((= (car x) (car z)) (cons (car x) (maj (cdr x) (cdr y) (cdr z))))
+          (else (cons (car y) (maj (cdr x) (cdr y) (cdr z))))
+          )))
+
+  (define (maj-map x y z)
+      (map (lambda (a b c) 
+          (if(>= (+ a b c) 2) 1 0))else 0
+          x y z)) ; map x -> a, y -> b, and z -> c
+````
+
