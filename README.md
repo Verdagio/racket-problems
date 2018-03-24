@@ -35,7 +35,7 @@ To lower the complexity and cost of the algorithm we could just check the number
 
 #### Conclusion
 For the problem these were my solution:
-````
+````scheme
   (define m 2)
 
   (define (decide-prime n)
@@ -82,7 +82,7 @@ Collatz Conjecture has yet to be proven true, most research into the conjecture 
 #### Conclusion 
 While it is yet to be proven true, the research done shows strong evidence that suggests it is. In anycase here is my solution:
 
-````
+````scheme
   (define (collatz-list n)
   (cond
     ((= n 1) '(1)); 1
@@ -122,7 +122,7 @@ Use `cdr` of the non empty list l = '(1 2 3) for example, to return another list
 #### Conclusion
 The best solution I found to this problem was the following solution:
 
-````
+````scheme
   (define (lcycle l)
     (app (cdr l) (car l)))
 
@@ -144,4 +144,47 @@ The best solution I found to this problem was the following solution:
       (cons (car l) (app (cdr l) m))))
 ````
 
- 
+## 4. Sub list Sum
+
+##### The task
+ Write a function sublsum in Racket that takes a list (of integers) as input and returns a list of sublists of it that sum to zero. For this problem, you can use the combinations built-in function. 
+
+ ##### How do we do it?
+ In theory, first make sure the list l is not null, sum all the elements of a list in each combination, if the sum = 0, return the combination(s). 
+
+ #### Conclusion
+ While I was unable to come up with a solution that sticks to the above requirements this is my solution: 
+
+ ````scheme
+(define (sublsum? l)
+  (null? l) 
+  (= 0 (apply + l)))
+ ````
+
+## 5. Hamming distance
+
+##### The task
+; Write a functiono hamming-distance in Racket that takes two lists and returns number of positions in which they differ.
+
+##### Example
+Consider if we have two lists of equal legth containing only 1's and 0's:
+a = '(0 1 0 1 0 1 0)
+b = '(0 0 0 0 1 0 1)
+
+The distance of a b = 5, but how did we come to that conclusion. Its relatively simple. Recurse through both lists comparing the first element of each against eachother, if they are the same continue, otherwise increment and recurse until the end of the list.
+
+##### A brief history lesson
+The Hamming distance is named after Richard Hamming, who introduced the concept in his fundamental paper on Hamming codes Error detecting and error correcting codes in 1950. Hamming weight analysis of bits is used in several disciplines including information theory, coding theory, and cryptography.
+
+#### Conclusion
+
+Here is the solution for this problem: 
+
+````scheme
+  (define n 0)
+  (define (hamming-distance l m) 
+    (if (not (pair? l)) 
+        n 
+        (if (= (car l) (car m)) (hamming-distance (cdr l) (cdr m))
+        (+ 1 (hamming-distance (cdr l) (cdr m))))))
+````
