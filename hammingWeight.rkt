@@ -6,11 +6,9 @@
 ; increment and recursively check until the end
 ; otherwise don't increment but keep checking.
 
-(define n 0)
-
 (define (hamming-weight l)
   (if (null? l)
-      n
+      0
       (if (= 1 (car l))(+ 1 (hamming-weight (cdr l)))
       (hamming-weight (cdr l)))))
 

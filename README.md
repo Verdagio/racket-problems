@@ -166,14 +166,14 @@ The best solution I found to this problem was the following solution:
 ##### The task
 ; Write a functiono hamming-distance in Racket that takes two lists and returns number of positions in which they differ.
 
-##### Example
-Consider if we have two lists of equal legth containing only 1's and 0's:
+##### What is it and how do we do it?
+The Hamming distnace between two words of equal length is the number of places in which they differ. So with that in mind lets consider if we have two lists of equal legth containing only 1's and 0's:
 a = '(0 1 0 1 0 1 0)
 b = '(0 0 0 0 1 0 1)
 
-The distance of a b = 5, but how did we come to that conclusion. Its relatively simple. Recurse through both lists comparing the first element of each against eachother, if they are the same continue, otherwise increment and recurse until the end of the list.
+The distance of a & b = 5, but how did we come to that conclusion. Its relatively simple. Recurse through both lists comparing each element of each list against eachother, if they are the same continue, otherwise increment and recurse until the end of the list. 
 
-##### A brief history lesson
+##### A brief description
 The Hamming distance is named after Richard Hamming, who introduced the concept in his fundamental paper on Hamming codes Error detecting and error correcting codes in 1950. Hamming weight analysis of bits is used in several disciplines including information theory, coding theory, and cryptography.
 
 #### Conclusion
@@ -188,3 +188,36 @@ Here is the solution for this problem:
         (if (= (car l) (car m)) (hamming-distance (cdr l) (cdr m))
         (+ 1 (hamming-distance (cdr l) (cdr m))))))
 ````
+
+## 6. Hamming weight
+ Write a function hamming-weight in Racket that takes a list l as input and returns the number of non-zero elements in it.
+
+ ##### How do we do it? 
+ The solution to the following is fairly similar to the Hamming distance. Recurse through a list checking each element, if the element is 1, increment and continue, otherwise do not increment but continue nonetheless. 
+
+##### What is it?
+Named after Richard Hamming although he was not the originator of the Hamming Weight. The Hamming weight of binary numbers was originated in 1899 by James W. L. Glaisher to give a formula for the number of odd binomial coefficients in a single row of Pascal's triangle. The formula has uses in several areas including, cryptography, information and coding theory. 
+
+#### Conclusion
+This is the solution I founnd for this problem:
+````scheme
+  (define (hamming-weight l)
+    (if (null? l)
+        0
+        (if (= 1 (car l))(+ 1 (hamming-weight (cdr l)))
+        (hamming-weight (cdr l)))))
+````
+
+## 7. Maj
+ Write a function maj in Racket that takes three lists x, y, and z of equal length and containing only 0's and 1's. it should return a list containing a 1 where two or more lists contain 1's and 0 otherwise.
+
+ ##### What is it & How do we do it?
+Check through each element of 3 lists containing 1's and 0's only, if 2 or more lists contain a 1, add that to a list in the postion otherwise 0, and continue till the end and return this new list: EG.
+(0 1 1 0) (1 0 1 0) (0 0 0 0) = (0 0 1 0)
+
+
+For this I will explain the two different methods I used to solve this problem.
+
+  1. First check if the current element is null if so exit the funciton, then check the following conditions if the the current element of x = y or z then add that to the list and recurse, otherwise add the current element of y and recurse.
+
+   2. Alternatively we can map x y z to a lambda function which checks the sum of each trio of elements to see if it equals 2 or more, if so add it to the list and return.
