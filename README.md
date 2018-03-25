@@ -65,9 +65,8 @@ For the problem these were my solution:
             #f
             (recursion-optimized n (+ m 1))))); 5
 ````
-
-
- ## 2. Collatz Conjecture
+___
+## 2. Collatz Conjecture
 Write, from scratch, a function in Racket that takes a positive integer n0 as input and returns a list by recursively applying the following operation, starting with the input number: (Equal: n/2 | Odd: n * 3 + 1) until n is 1.
 
 ##### What is Collatz Conjecture
@@ -94,7 +93,7 @@ While it is yet to be proven true, the research done shows strong evidence that 
       (cons n (collatz-list (+ (* 3 n) 1)))))); 3
 
 ````
-
+___
 ## 3. Left & Right list cycles
 Write, from scratch, two functions in Racket. The first is called lcycle (left cycle). It takes a list as input and returns the list cyclically shifted one place to the left. The second is called rcycle (right cycle), and it shifts the list cyclically shifted one place to the right.
 
@@ -145,7 +144,7 @@ The best solution I found to this problem was the following solution:
     (if (null? l) '(l)
       (cons (car l) (app (cdr l) m))))
 ````
-
+___
 ## 4. Sub list Sum
 
 ##### The task
@@ -162,7 +161,7 @@ The best solution I found to this problem was the following solution:
   (null? l) 
   (= 0 (apply + l)))
  ````
-
+___
 ## 5. Hamming distance
 
 ##### The task
@@ -170,8 +169,12 @@ The best solution I found to this problem was the following solution:
 
 ##### What is it and how do we do it?
 The Hamming distnace between two words of equal length is the number of places in which they differ. So with that in mind lets consider if we have two lists of equal legth containing only 1's and 0's:
+
 a = '(0 1 0 1 0 1 0)
-b = '(0 0 0 0 1 0 1)
+
+b = '(0 **0** 0 **0** **1** **0** **1**)
+
+Distance = **5**
 
 The distance of a & b = 5, but how did we come to that conclusion. Its relatively simple. Recurse through both lists comparing each element of each list against eachother, if they are the same continue, otherwise increment and recurse until the end of the list. 
 
@@ -190,7 +193,7 @@ Here is the solution for this problem:
         (if (= (car l) (car m)) (hamming-distance (cdr l) (cdr m))
         (+ 1 (hamming-distance (cdr l) (cdr m))))))
 ````
-
+___
 ## 6. Hamming weight
  Write a function hamming-weight in Racket that takes a list l as input and returns the number of non-zero elements in it.
 
@@ -209,23 +212,23 @@ This is the solution I built for this problem:
         (if (= 1 (car l))(+ 1 (hamming-weight (cdr l)))
         (hamming-weight (cdr l)))))
 ````
-
+___
 ## 7. Maj
  Write a function maj in Racket that takes three lists x, y, and z of equal length and containing only 0's and 1's. it should return a list containing a 1 where two or more lists contain 1's and 0 otherwise.
 
- ##### What is it & How do we do it?
+ ##### How do we do it?
 Check through each element of 3 lists containing 1's and 0's only, if 2 or more lists contain a 1, add that to a list in the postion otherwise 0, and continue till the end and return this new list: EG.
-(0 1 1 0) (1 0 1 0) (0 0 0 0) = (0 0 1 0)
 
+``(0 1 1 0) (1 0 1 0) (0 0 0 0) = (0 0 1 0)``
 
 For this I will explain the two different methods I used to solve this problem.
 
   1. First check if the current element is null if so exit the funciton, then check the following conditions if the the current element of x = y or z then add that to the list and recurse, otherwise add the current element of y and recurse.
 
-   2. Alternatively we can map x y z to a lambda function with args a b c which checks the sum of each trio in the lists of elements to see if it equals 2 or more, if so add it to the list and return.
+  2. Alternatively we can map x y z to a lambda function with args a b c which checks the sum of each trio in the lists of elements to see if it equals 2 or more, if so add it to the list and return.
 
 #### Conclusion
-This are the solutions I came up with for the problem: 
+This are the solutions I built for the problem: 
 
 ````scheme
   (define (maj x y z)
@@ -240,6 +243,96 @@ This are the solutions I came up with for the problem:
   (define (maj-map x y z)
       (map (lambda (a b c) 
           (if(>= (+ a b c) 2) 1 0))else 0
-          x y z)) ; map x -> a, y -> b, and z -> c
+          x y z))
 ````
+___
+## 8. Chse
+ Write a function chse in Racket that takes three lists x, y, and z of equal length and containing only 0's and 1's. It should return a list containing the elements of y in the positions where x is 1 and the elements of z otherwise. 
+
+#### How do we do it?
+Recurse through a list x, check the current first element of the list, if the element is equal to 1 then add the element with the corresponding element of y, otherwise if its equal to 0, add the element with the corresponding element of z and return the result.
+
+Alternatively we can use a map to a lambda function to do this for us where we check if each element in a equals 1, if so, add the element of a in the corresponding postion, otherwise c in the corresponding postion to a list and return once done (Where mapping x -> a, y -> b, z -> c).
+
+Example: 
+``x(0 0 0 0 1 1 1 1) y(0 0 1 1 0 0 1 1) z(0 1 0 1 0 1 0 1) = (0 1 1 0 1 0 0 1)``
+
+#### Conclusion
+Here are the solutions I built for the problem:
+````scheme
+  (define (chse x y z)
+    (if (null? y) 
+        '() 
+        (cond 
+          ((= 1 (car x)) (cons (car y)(chse (cdr x) (cdr y) (cdr z))))
+          (else (cons (car z)(chse (cdr x) (cdr y) (cdr z)))))))
+
+  (define (chse-map x y z)
+    (map (lambda (a b c)
+          (if (= a 1) b c))
+        x y z))
+````
+___
+## 9. SOD2
+Write a function in Racket that takes three lists x, y, and z of equal length and containing only 0's and 1's. It should return a list containing a 1 wher the number of 1's in a given position in x, y, and z contains an odd number.
+
+#### How does it work?
+Similar to the previous 2 tasks, recurse through a set of lists, if the sum of current elements in the 3 lists is an equal number add a 0 onto a list, otherwise add a 1 to a list, and return said list once we have checked all elements.
+
+#### Conclusion
+Here are the solutions I built for the problem:
+````scheme
+  (define (sod2 x y z) 
+    (if (null? x) 
+        '()
+        (cond 
+          ((= (modulo (+ (car x)(car y)(car z)) 2) 0)(cons 0 (sod2 (cdr x) (cdr y) (cdr z))))
+          (else (cons 1 (sod2 (cdr x) (cdr y) (cdr z)))))))
+
+  (define (sod2-map x y z)
+    (map (lambda (a b c) 
+          (if (= (modulo (+ a b c) 2) 0) 0 1))   
+          x y z)) 
+````
+___
+## 10. Lstq
+Write a function lstq in Racker that takes as arguements two lists l and m or equal length and containing numbers. It should return d, the distance given by the sum of the square residuals between the numbers in the lists. Take the ith element of m from the ith element of l and square the result for all i. Then add all of those to get d.
+
+#### How do we do this?
+We need 2 auxiliary functions ``round-lists`` and ``sum``
+
+###### round-lists
+First check if we are at the end of the list / have a null list if so exit - return the list wether its null or built. Alternatively add the remainer of el (x - y)^2 to the the list by recursively iterating through the list until we reach the end, and return.
+
+###### sum
+Sum all the elements of a list and return unless the list is null.
+
+###### lstq
+With that we simply sum the lists which each element of has already been squared to return our final result.
+````
+Example: 
+(pow-lists '(4 5 6) '(1 2 3))
+ = (3 3 3)^2 
+ = (9 9 9) 
+ (sum (9 9 9)) = 27 = lstq
+````
+
+#### Conclusion
+Here is the solution for the problem:
+````scheme
+  (define (lstq l m)
+    (sum (pow-lists l m)))
+
+  (define (pow-lists l m)
+    (cond
+      ((null? l) '())
+      (else (cons (* (- (car l)(car m))(- (car l)(car m))) (round-lists (cdr l)(cdr m))))))
+
+  (define (sum l)
+    (if (null?  l)
+        0
+        (+ (car l) (sum (cdr l))))) 
+````
+___
+# END
 

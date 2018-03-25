@@ -1,8 +1,8 @@
 #lang racket
 
-#| Write a function chse in Racker that takes three lists x, y, and z of equal length
- and containing only 0's and 1's. It should return a list containin g the elements
- of y in the positions where x is 1 and the elements of z otherwise.|#
+#| Write a function chse in Racket that takes three lists x, y, and z of equal length
+ and containing only 0's and 1's. It should return a list containing the elements
+ of y in the positions where x is 1 and the elements of z otherwise. |#
 
 (define (chse x y z)
   (if (null? y) ; exit statement if y is null we've reached the end of the list

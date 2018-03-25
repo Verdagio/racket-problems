@@ -6,9 +6,9 @@ the square residuals between the numbers in the lists. Take the ith element of m
 the ith element of l and square the result for all i. Then add all of those to get d.|#
 
 (define (lstq l m)
-  (sum (round-lists l m)))
+  (sum (pow-lists l m)))
 
-(define (round-lists l m)
+(define (pow-lists l m)
   (cond
     ((null? l) '())
     (else (cons (* (- (car l)(car m))(- (car l)(car m))) (round-lists (cdr l)(cdr m))))))
